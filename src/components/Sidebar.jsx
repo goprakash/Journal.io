@@ -27,6 +27,7 @@ const Sidebar = ({
 
       <div className="sidebar-header">
         <h2>Journal.io</h2>
+        <h4>Journal It.</h4>
         <button className="new-btn" onClick={onAdd}>
           + New Journal
         </button>

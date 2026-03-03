@@ -31,6 +31,11 @@ body {
   overflow-y: auto;
 }
 
+.sidebar.h2{
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
 .main-content {
   margin-left: 260px; /* Matches Sidebar width */
   flex: 1;
