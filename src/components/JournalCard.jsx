@@ -1,22 +1,74 @@
-import React from "react";
+import React, { useState } from "react";
 
-const JournalCard = ({ title, content, folder, image }) => {
+const JournalCard = ({ journal, allFolders, onUpdateFolders }) => {
+  const [editing, setEditing] = useState(false);
+
+  const toggleFolder = (folder) => {
+    const currentFolders = journal.folders || [];
+
+    const updated =
+      currentFolders.includes(folder)
+        ? currentFolders.filter((f) => f !== folder)
+        : [...currentFolders, folder];
+
+    onUpdateFolders(journal.id, updated);
+  };
+
   return (
     <div className="journal-card">
-      <span className="folder-tag">{folder}</span>
+      <h3>{journal.title}</h3>
 
-      <h3>{title}</h3>
-
-      {image && (
+      {journal.image && (
         <img
-          src={image}
+          src={journal.image}
           alt="Journal"
           className="journal-image"
         />
       )}
 
-      <p>{content}</p>
+      <p>{journal.content}</p>
 
+      {/* Folder badges */}
+      <div style={{ marginTop: "10px" }}>
+        {journal.folders?.map((folder) => (
+          <span
+            key={folder}
+            style={{
+              background: "#eee",
+              padding: "4px 8px",
+              borderRadius: "8px",
+              marginRight: "5px",
+              fontSize: "12px",
+            }}
+          >
+            {folder}
+          </span>
+        ))}
+      </div>
+
+      <button
+        style={{ marginTop: "10px" }}
+        onClick={() => setEditing(!editing)}
+      >
+        +
+      </button>
+
+      {editing && (
+        <div style={{ marginTop: "10px" }}>
+          {allFolders
+            .filter((f) => f !== "All")
+            .map((folder) => (
+              <label key={folder} style={{ display: "block" }}>
+                <input
+                  type="checkbox"
+                  checked={journal.folders?.includes(folder)}
+                  onChange={() => toggleFolder(folder)}
+                />
+                {folder}
+              </label>
+            ))}
+        </div>
+      )}
     </div>
   );
 };

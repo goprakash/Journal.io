@@ -1,7 +1,7 @@
 /* --- 1. Base Styles & Fonts --- */
 @font-face {
   font-family: "MyFont";
-  src: url("fonts/OrangeAvenue.otf") format("OpenType");
+  src: url("/fonts/OrangeAvenue.otf") format("opentype");
 }
 
 body {
@@ -141,3 +141,29 @@ body {
     display: block; /* Visible on mobile */
   }
 }
+
+/* Sidebar Header styling */
+.sidebar-header {
+  margin-bottom: 25px;
+}
+
+/* Reduced size and styled button */
+.new-btn {
+  width: auto;           /* Remove full width if it was there */
+  padding: 8px 16px;     /* Smaller padding (top/bottom, left/right) */
+  font-size: 14px;       /* Smaller font */
+  background: #00b8ff;
+  color: white;
+  border: none;
+  border-radius: 20px;   /* Pill shape */
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s ease;
+  display: block;        /* Centers it if you want */
+  margin: 0 auto 20px 0; /* Align to the left with bottom margin */
+}
+
+.new-btn:hover {
+  background: #0096d1;
+}
+

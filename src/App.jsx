@@ -5,6 +5,15 @@ import Modal from "./components/Modal";
 import "./App.css";
 
 function App() {
+  const updateJournalFolders = (journalId, updatedFolders) => {
+    const updated = journals.map((journal) =>
+      journal.id === journalId
+        ? { ...journal, folders: updatedFolders }
+        : journal
+    );
+
+    setJournals(updated);
+  };
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedFolder, setSelectedFolder] = useState("All");
@@ -68,7 +77,11 @@ function App() {
       />
 
       <main className="main-content">
-        <JournalGrid journals={filteredJournals} />
+        <JournalGrid
+          journals={filteredJournals}
+          allFolders={folders}
+          onUpdateFolders={updateJournalFolders}
+        />
       </main>
 
       {isModalOpen && (
